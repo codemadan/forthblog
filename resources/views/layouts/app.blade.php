@@ -16,6 +16,9 @@
         @livewireStyles
 
         <!-- Scripts -->
+{{--        <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>--}}
+        <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">

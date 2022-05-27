@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,13 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
             Route::get('/', [CategoryController::class, 'index'])->name('index');
             Route::get('/create', [CategoryController::class, 'create'])->name('create');
             Route::post('/store', [CategoryController::class, 'store'])->name('store');
+        });
+
+        Route::group(['prefix'=> 'post', 'as' => 'post.'], function(){
+            Route::get('/', [PostController::class, 'index'])->name('index');
+            Route::get('/create', [PostController::class, 'create'])->name('create');
+            Route::post('/store', [PostController::class, 'store'])->name('store');
+            Route::get('/post/{slug}', [PostController::class, 'show'])->name('show');
         });
     });
 

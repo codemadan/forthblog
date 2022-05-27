@@ -19,6 +19,10 @@
                     <x-jet-nav-link href="{{ route('admin.category.index') }}" :active="request()->routeIs('admin.category.index')">
                         {{ __('Category') }}
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('admin.post.index') }}" :active="request()->routeIs('admin.post.index')">
+                        {{ __('Post') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
