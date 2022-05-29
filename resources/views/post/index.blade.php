@@ -1,8 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Category') }}
-        </h2>
+        <div class="grid grid-cols-2">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Posts') }}
+            </h2>
+            <a href="{{ route('admin.post.create') }}">
+                <button class="block border-gray-400 border-2 p-4">Create New Post</button>
+            </a>
+        </div>
+
     </x-slot>
 
     <div class="py-12">
