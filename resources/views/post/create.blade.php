@@ -14,9 +14,11 @@
                     <div class="block p-6">
                         <form action="{{ route('admin.post.store') }}" method="post">
                             @csrf
-                            <div class="form-group mb-6">
-                                <label for="name" class="form-label inline-block mb-2 text-gray-700">Title</label>
-                                <input type="text" class="form-control
+                            <div class="grid grid-cols-12 gap-6">
+                                <div class="col-span-9">
+                                    <div class="form-group mb-6">
+                                        <label for="name" class="form-label inline-block mb-2 text-gray-700">Title</label>
+                                        <input type="text" class="form-control
                                         block
                                         w-full
                                         px-3
@@ -31,13 +33,13 @@
                                         ease-in-out
                                         m-0
                                         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="name"
-                                       placeholder="Enter Title"
-                                       name="title">
-                            </div>
-                            <div class="form-group mb-6">
-                                <label for="slug"
-                                       class="form-label inline-block mb-2 text-gray-700">Slug</label>
-                                <input type="text" class="form-control block
+                                               placeholder="Enter Title"
+                                               name="title">
+                                    </div>
+                                    <div class="form-group mb-6">
+                                        <label for="slug"
+                                               class="form-label inline-block mb-2 text-gray-700">Slug</label>
+                                        <input type="text" class="form-control block
                                         w-full
                                         px-3
                                         py-1.5
@@ -51,12 +53,31 @@
                                         ease-in-out
                                         m-0
                                         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="slug"
-                                       placeholder="Slug" name="slug">
+                                               placeholder="Slug" name="slug">
+                                    </div>
+                                    <div class="form-group b-6">
+                                        <label for="content" class="form-label inline-block mb-2 text-gray-700">Content</label>
+                                        <textarea name="content" id="content" cols="30" rows="10" class="block"></textarea>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="category-selector">
+                                        <h2 class="font-bold pb-2">Category</h2>
+                                        @foreach($categories as $category)
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="{{ $category->id }}"
+                                                       id="category-{{ $category->id }}" name="categories[]">
+                                                <label class="form-check-label" for="category-{{ $category->id }}">
+                                                    {{ $category->name }}
+                                                </label>
+                                            </div>
+
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group mb-6">
-                                <label for="content" class="form-label inline-block mb-2 text-gray-700">Content</label>
-                                <textarea name="content" id="content" cols="30" rows="10" class="block"></textarea>
-                            </div>
+
+
                             <button type="submit" class="
                                       px-6
                                       py-2.5
