@@ -10,4 +10,9 @@ class Post extends Model
 {
     use HasFactory;
     use softDeletes;
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'post_category');
+    }
 }

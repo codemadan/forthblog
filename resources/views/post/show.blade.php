@@ -11,6 +11,13 @@
                 <div class="bg-white p-4 shadow-xl sm:rounded-lg">
                     {!! $post->content !!}
                 </div>
+                <div class="bg-white p-4 shadow-xl sm:rounded-lg mt-5">
+                    <ul class="categories list-disc">
+                        @foreach($post->categories as $category)
+                            <li>{{ $category->name }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
 
         </div>

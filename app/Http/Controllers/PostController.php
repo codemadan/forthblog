@@ -42,12 +42,19 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
-        dd($request->all());
+
+//        dd($request->input('categories'));
+
+        $category_ids = Category::find($request->input('categories'))
+            ->pluck('id')->toArray();
+
         $post = new Post();
         $post->Title = $request->input('title');
         $post->slug = $request->input('slug');
         $post->content = $request->input('content');
         $post->save();
+
+        $post->categories()->attach($category_ids);
 
         return redirect(route('admin.post.index'));
     }
