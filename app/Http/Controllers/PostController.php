@@ -78,24 +78,43 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
         //
+        $post = Post::query()
+            ->where('slug', '=', $slug)
+            ->first();
+
+        $categories = Category::all();
+
+        return view('post.edit', compact('post', 'categories'));
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         //
+        $post = Post::query()
+            ->where('slug', '=', $slug)
+            ->first();
+        $post->Title = $request->input('title');
+        $post->slug = $request->input('slug');
+        $post->content = $request->input('content');
+        $post->save();
+
+        $post->categories()->sync($request->input('categories'));
+
+        return redirect(route('admin.post.show', $post->slug));
     }
 
     /**
