@@ -16,7 +16,10 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts = Post::all();
+        $posts = Post::query()
+            ->select('Title', 'slug', 'id')
+            ->orderBy('id')
+            ->paginate(15);
 //        dd($posts);
         return view('post.index', compact('posts'));
     }
@@ -126,5 +129,13 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search( Request $request ){
+        //dd($request->input('search'));
+        $posts = Post::search($request->input('search'))->get();
+
+        return view('post.index', compact('posts'));
+
     }
 }

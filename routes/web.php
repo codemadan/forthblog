@@ -42,6 +42,7 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
             Route::get('/post/{slug}', [PostController::class, 'show'])->name('show');
             Route::get('/edit/{slug}', [PostController::class, 'edit'])->name('edit');
             Route::post('/update/{slug}', [PostController::class, 'update'])->name('update');
+            Route::get('/search', [PostController::class, 'search'])->name('search');
         });
     });
 
